@@ -1,31 +1,26 @@
 // script.js
 
+// Smooth scrolling for anchor links
+const smoothScroll = (target) => {
+    document.querySelector(target).scrollIntoView({
+        behavior: 'smooth'
+    });
+};
+
 // Navigation functionality
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-});
-
-// Smooth scrolling functionality
-const scrollLinks = document.querySelectorAll('a[href^="#"]');
-
-scrollLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+const navLinks = document.querySelectorAll('a[href^="#"]');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default anchor behavior
+        const targetId = link.getAttribute('href');
+        smoothScroll(targetId);
     });
 });
 
-// Blog features
-const blogPosts = document.querySelectorAll('.blog-post');
-blogPosts.forEach(post => {
-    post.addEventListener('click', () => {
-        post.classList.toggle('expanded');
+// Interactive elements
+const interactiveElements = document.querySelectorAll('.interactive');
+interactiveElements.forEach(element => {
+    element.addEventListener('click', () => {
+        element.classList.toggle('active');
     });
 });
-
